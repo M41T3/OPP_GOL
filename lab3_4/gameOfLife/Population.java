@@ -8,9 +8,11 @@ public class Population {
 	private int amount;		// amount of cells
 	private int generation;
 	private boolean[][] field;	// population field: True, False
+	private boolean[][] tmp_field; // Copy matrix 
 	private int[] amountHist;	// array of amounts from last generations
 	
 	public Population(double ratio) {
+		tmp_field = new boolean[50][50]; 
 		setRatio(ratio);
 		this.field  = generateField(this.ratio);
 		this.setAmount(calcAmount(this.field));
@@ -87,23 +89,145 @@ public class Population {
 		
 		// Game Rules---
 		
-		for(int x = 1; x < 49; x++) {			// Example!! Test!!
+		
+		int sum;
+		
+		for(int x = 1; x < 49; x++) {		// Top middle
+			
+			sum = 0;
+			
+			if(this.field[x-1][0]) sum++;
+			if (this.field[x+1][0]) sum++;
+			if (this.field[x-1][1]) sum++;
+			if (this.field[x][1]) sum++;
+			if (this.field[x+1][1]) sum++;
+	
+			//System.out.println(sum); //[DEBUG]
+			
+			if((sum <= 3 && sum >=2 && this.field[x][0] == true) || (sum == 3 && this.field[x][0] == false))
+				tmp_field[x][0] = true;
+			else tmp_field[x][0] = false;		
+		}
+		
+		for(int x = 1; x < 49; x++) {		// Bottom	 middle
+			
+			sum = 0;
+			
+			if(this.field[x-1][49]) sum++;
+			if (this.field[x+1][49]) sum++;
+			if (this.field[x-1][48]) sum++;
+			if (this.field[x][48]) sum++;
+			if (this.field[x+1][48]) sum++;
+	
+			if((sum <= 3 && sum >=2 && this.field[x][48] == true) || (sum == 3 && this.field[x][48] == false))
+				tmp_field[x][48] = true;
+			else tmp_field[x][48] = false;		
+		}
+		
+		for(int y = 1; y < 49; y++) {		// Left middle
+			
+			sum = 0;
+			
+			if(this.field[0][y-1]) sum++;
+			if (this.field[0][y+1]) sum++;
+			if (this.field[1][y-1]) sum++;
+			if (this.field[1][y]) sum++;
+			if (this.field[1][y+1]) sum++;
+	
+			if((sum <= 3 && sum >=2 && this.field[0][y] == true) || (sum == 3 && this.field[0][y] == false))
+				tmp_field[0][y] = true;
+			else tmp_field[0][y] = false;		
+		}
+		
+		for(int y = 1; y < 49; y++) {		// Right middle
+			
+			sum = 0;
+			
+			if(this.field[49][y-1]) sum++;
+			if (this.field[49][y+1]) sum++;
+			if (this.field[48][y-1]) sum++;
+			if (this.field[48][y]) sum++;
+			if (this.field[48][y+1]) sum++;
+	
+			if((sum <= 3 && sum >=2 && this.field[49][y] == true) || (sum == 3 && this.field[49][y] == false))
+				tmp_field[49][y] = true;
+			else tmp_field[49][y] = false;		
+		}
+		
+		
+		for(int x = 1; x < 49; x++) {			// Middle
 			for(int y = 1; y < 49; y++) {
 				
-				if((this.field[x-1][y] && this.field[x][y+1] )|| (this.field[x][y] && this.field[x][y+1]) 
-						|| (this.field[x+1][y] && this.field[x-1][y]) || (this.field[x][y] && this.field[x+1][y+1])) { 
-					this.field[x][y] = true;
-				}
-				else this.field[x][y] = false;			
+				sum = 0;
+				
+				if(this.field[x-1][y]) sum++;
+				if (this.field[x-1][y-1]) sum++;
+				if (this.field[x-1][y+1]) sum++;
+				if (this.field[x][y-1]) sum++;
+				if (this.field[x][y+1]) sum++;
+				if (this.field[x+1][y]) sum++;
+				if (this.field[x+1][y-1]) sum++;
+				if (this.field[x+1][y+1]) sum++;
+				
+				
+				if((sum <= 3 && sum >=2 && this.field[x][y] == true) || (sum == 3 && this.field[x][y] == false))
+					this.tmp_field[x][y] = true;
+				else this.tmp_field[x][y] = false;			
 			}
 		}
 		
+		
+		sum = 0;							// Corner Top-Left
+		
+		if(this.field[1][1]) sum++;
+		if (this.field[0][1]) sum++;
+		if (this.field[1][0]) sum++;
+		
+		if((sum <= 3 && sum >=2 && this.field[0][0] == true) || (sum == 3 && this.field[0][0] == false))
+			tmp_field[0][0] = true;
+		else tmp_field[0][0] = false;	
+		
+		
+		sum = 0;							// Corner Top-Right
+		
+		if(this.field[48][0]) sum++;
+		if (this.field[48][1]) sum++;
+		if (this.field[49][1]) sum++;
+		
+		if((sum <= 3 && sum >=2 && this.field[49][0] == true) || (sum == 3 && this.field[49][0] == false))
+			tmp_field[49][0] = true;
+		else tmp_field[49][0] = false;	
+
+		
+		sum = 0;							// Corner Bottom-Right
+		
+		if(this.field[48][49]) sum++;
+		if (this.field[48][48]) sum++;
+		if (this.field[49][48]) sum++;
+		
+		if((sum <= 3 && sum >=2 && this.field[49][49] == true) || (sum == 3 && this.field[49][49] == false))
+			tmp_field[49][49] = true;
+		else tmp_field[49][49] = false;		
+		
+		
+		sum = 0;							// Corner Bottom-Left
+		
+		if(this.field[0][48]) sum++;
+		if (this.field[1][48]) sum++;
+		if (this.field[1][49]) sum++;
+		
+		if((sum <= 3 && sum >=2 && this.field[0][49] == true) || (sum == 3 && this.field[0][49] == false))
+			tmp_field[0][49] = true;
+		else tmp_field[0][49] = false;	
+		
+		
 		//------
 		
-		setAmount(calcAmount(this.field)); // not done yet
+		this.field = this.tmp_field;
+		setAmount(calcAmount(this.field)); 
 		setGeneration(++this.generation);
 		this.setAmountHist(getAmount(), getGeneration());
-		System.out.println(getGeneration()); //[DEBUG]
+		//System.out.println(getGeneration()); //[DEBUG]
 	}
 	
 	public int[] getAmountHist() {

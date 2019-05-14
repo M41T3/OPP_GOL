@@ -74,14 +74,8 @@ public class GOLApp implements ActionListener {
 			while(population.getGeneration() < 399) {
 				population.nextGeneration();
 				
-				/*try {
-					
-					
-					TimeUnit.SECONDS.sleep(1);		// Delay funktioniert nicht!
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}*/
-				
+				// sleep?														[TODO]
+		
 				populationPanel.repaint();
 				textPanel.repaint();
 				histPanel.repaint();
@@ -103,7 +97,7 @@ public class GOLApp implements ActionListener {
 	
 	
 	public static void main(String[] args) {	// ################# MAIN ###############
-		double ratio = 0.35;	// Set probability
+		double ratio = 0.09;	// Set probability
 		
 		Population population = new Population(ratio); // Generate new Population instance
 		// population.debug(); //[DEBUG]

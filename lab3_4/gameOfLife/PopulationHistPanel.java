@@ -25,7 +25,7 @@ public class PopulationHistPanel extends JPanel{
 		g.setColor(Color.RED);
 		
 		for(int a = 0; a < 400; a++) {
-			g.drawLine(a, 60, a,60 - (int)(this.population.getAmountHist()[a]/15));	// Show Hist
+			g.drawLine(a, 60, a,60 - (int)(this.population.getAmountHist()[a]/18));	// Show Hist
 			// System.out.println("a = "+a+" val= "+ (this.population.getAmountHist()[a])); //[DEBUG]
 		}
 	}
