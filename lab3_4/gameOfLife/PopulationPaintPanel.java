@@ -1,29 +1,29 @@
 package lab3_4.gameOfLife;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class PopulationPaintPanel extends JPanel{
 	
 	Population population;
-	int size = 8;
+	int size = 8;			// Size of Pixel
 	
-	public PopulationPaintPanel(Population population) {
+	public PopulationPaintPanel(Population population) {	// Constructor
 		this.population = population;
 	}
 
 	public Dimension getPreferredSize() {
-		return new Dimension(400, 400); 	// Size Population Panel 
+		return new Dimension(408, 408); 	// Size Population Panel 
 	}
 	
-	public void paintComponent(Graphics g) {	//, Population population
+	public void paintComponent(Graphics g) {	
 		super.paintComponent(g);
 		
 		
-		// Scheiss drauf! Alles hier rein! -.-
+		// Draw here
 		
 		
 		for(int x = 0; x < 50; x++) {
@@ -32,13 +32,9 @@ public class PopulationPaintPanel extends JPanel{
 				if(population.getField()[x][y])
 				g.fillRect(x*size, y*size, size, size);
 				
-	
+				
 				
 			}
-			
 		}
-		
 	}
-	
-	
 }
