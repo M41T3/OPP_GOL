@@ -4,6 +4,7 @@ package lab3_4.gameOfLife;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+//import java.util.concurrent.TimeUnit;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -68,11 +69,24 @@ public class GOLApp implements ActionListener {
 	public void actionPerformed(ActionEvent event) {		// Events if button is pressed
 		if (event.getSource() == startButton) {
 			
-			//while(true) {
-				// population.nextGeneration();
-				// delay(1s)
-			//}
+			//System.out.println(population.getGeneration()); //[DEBUG]
 			
+			while(population.getGeneration() < 399) {
+				population.nextGeneration();
+				
+				/*try {
+					
+					
+					TimeUnit.SECONDS.sleep(1);		// Delay funktioniert nicht!
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}*/
+				
+				populationPanel.repaint();
+				textPanel.repaint();
+				histPanel.repaint();
+			}	
+				
 		}else if (event.getSource() == newButton) {
 			this.population.setField(Population.generateField(ratio));
 			populationPanel.repaint();
@@ -89,7 +103,7 @@ public class GOLApp implements ActionListener {
 	
 	
 	public static void main(String[] args) {	// ################# MAIN ###############
-		double ratio = 0.2;	// Set probability
+		double ratio = 0.35;	// Set probability
 		
 		Population population = new Population(ratio); // Generate new Population instance
 		// population.debug(); //[DEBUG]

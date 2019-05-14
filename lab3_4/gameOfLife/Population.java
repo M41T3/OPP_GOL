@@ -85,12 +85,25 @@ public class Population {
 
 	public void nextGeneration() {		// Changes field according to game rules
 		
-		// Game Rules
+		// Game Rules---
+		
+		for(int x = 1; x < 49; x++) {			// Example!! Test!!
+			for(int y = 1; y < 49; y++) {
+				
+				if((this.field[x-1][y] && this.field[x][y+1] )|| (this.field[x][y] && this.field[x][y+1]) 
+						|| (this.field[x+1][y] && this.field[x-1][y]) || (this.field[x][y] && this.field[x+1][y+1])) { 
+					this.field[x][y] = true;
+				}
+				else this.field[x][y] = false;			
+			}
+		}
+		
+		//------
 		
 		setAmount(calcAmount(this.field)); // not done yet
 		setGeneration(++this.generation);
 		this.setAmountHist(getAmount(), getGeneration());
-		//System.out.println(getGeneration()); //[DEBUG]
+		System.out.println(getGeneration()); //[DEBUG]
 	}
 	
 	public int[] getAmountHist() {

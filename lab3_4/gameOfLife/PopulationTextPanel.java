@@ -21,8 +21,8 @@ public class PopulationTextPanel extends JPanel{
 	public void paintComponent(Graphics g) {	//, Population population
 		super.paintComponent(g);
 		
-		g.drawString("Generation: " + population.getGeneration(), 5, 15);	
-		g.drawString("Population: " + population.getAmount(), 5, 30);	
+		g.drawString("Generation: " + population.getGeneration(), 5, 20);	
+		g.drawString("Population: " + population.getAmount(), 5, 35);	
 			
 	}
 	
