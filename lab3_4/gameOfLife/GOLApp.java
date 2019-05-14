@@ -97,7 +97,7 @@ public class GOLApp implements ActionListener {
 	
 	
 	public static void main(String[] args) {	// ################# MAIN ###############
-		double ratio = 0.09;	// Set probability
+		double ratio = 0.1;	// Set probability
 		
 		Population population = new Population(ratio); // Generate new Population instance
 		// population.debug(); //[DEBUG]

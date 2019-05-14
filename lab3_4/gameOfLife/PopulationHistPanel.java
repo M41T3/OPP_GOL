@@ -22,13 +22,24 @@ public class PopulationHistPanel extends JPanel{
 	public void paintComponent(Graphics g) {	//, Population population
 		super.paintComponent(g);
 		
-		g.setColor(Color.RED);
+		//g.setColor(Color.RED);
 		
 		for(int a = 0; a < 400; a++) {
+			
+			g.setColor(Color.RED);
+			
+			if(a == population.getGeneration()) {
+				
+				System.out.println("a = " + a + " gen = " + population.getGeneration());
+				
+				g.setColor(Color.BLUE);
+				
+				g.drawLine(a, 60, a,60 - (int)(this.population.getAmountHist()[a]/18));		// thick stroke
+				g.drawLine(a+1, 60, a+1,60 - (int)(this.population.getAmountHist()[a]/18));
+			}
+			
 			g.drawLine(a, 60, a,60 - (int)(this.population.getAmountHist()[a]/18));	// Show Hist
-			// System.out.println("a = "+a+" val= "+ (this.population.getAmountHist()[a])); //[DEBUG]
 		}
-	}
-	
+	}	
 }
 
