@@ -1,5 +1,6 @@
 package lab3_4.gameOfLife;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Population {
@@ -81,8 +82,13 @@ public class Population {
 		return generation;
 	}
 
-	private void setGeneration(int generation) {
+	public void setGeneration(int generation) {
 		this.generation = generation;
+	}
+	
+	public void resetAmountHist() {
+		Arrays.fill(this.amountHist, 0); 
+		
 	}
 
 	public void nextGeneration() {		// Changes field according to game rules

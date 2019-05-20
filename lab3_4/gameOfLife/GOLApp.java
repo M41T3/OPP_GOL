@@ -40,7 +40,7 @@ public class GOLApp implements ActionListener {
 		buttonContainer.setLayout(new BoxLayout(buttonContainer,BoxLayout.X_AXIS));
 		
 		newButton = new JButton  ("   Neue Population   ");
-		nextButton = new JButton ("  Nächste Generation ");
+		nextButton = new JButton ("  Naechste Generation ");
 		startButton = new JButton("        Start        ");
 	
 		newButton.addActionListener(this);
@@ -82,11 +82,20 @@ public class GOLApp implements ActionListener {
 			}	
 				
 		}else if (event.getSource() == newButton) {
+			this.population.setGeneration(0);
+			this.population.resetAmountHist();
 			this.population.setField(Population.generateField(ratio));
 			populationPanel.repaint();
 			textPanel.repaint();
 			histPanel.repaint();
+		
 		}else if (event.getSource() == nextButton) {
+			
+			if(this.population.getGeneration() == 399) {
+				this.population.setGeneration(0);
+				this.population.resetAmountHist();
+			}
+			
 			population.nextGeneration();
 			populationPanel.repaint();
 			textPanel.repaint();
