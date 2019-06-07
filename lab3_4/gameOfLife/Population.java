@@ -1,6 +1,5 @@
 package lab3_4.gameOfLife;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Population {

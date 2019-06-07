@@ -21,7 +21,6 @@ public class PopulationHistPanel extends JPanel{
 	
 	public void paintComponent(Graphics g) {	//, Population population
 		super.paintComponent(g);
-		
 		//g.setColor(Color.RED);
 		
 		for(int a = 0; a < 400; a++) {

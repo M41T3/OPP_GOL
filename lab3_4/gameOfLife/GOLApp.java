@@ -63,22 +63,35 @@ public class GOLApp implements ActionListener {
 		frame.setVisible(true);
 		
 	}
-	
 
 	@Override
-	public void actionPerformed(ActionEvent event) {		// Events if button is pressed
+	public synchronized void actionPerformed(ActionEvent event) {		// Events if button is pressed
 		if (event.getSource() == startButton) {
 			
 			//System.out.println(population.getGeneration()); //[DEBUG]
 			
-			while(population.getGeneration() < 399) {
-				population.nextGeneration();
+			while(population.getGeneration() < 399) {	//[TODO] Es liegt an der Schleife!!!!
+			//for(int i = 0; i < 10; i++) {
+				NextGenThread thread = new NextGenThread(population, textPanel, populationPanel, histPanel);
 				
-				// sleep?														[TODO]
-		
+				thread.start();
+				System.out.println("NextGen:");
+				
+				population.nextGeneration();
+				try {
+					System.out.println("wait for join:");
+					thread.join();
+					System.out.println("joined.");
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				populationPanel.repaint();
 				textPanel.repaint();
 				histPanel.repaint();
+				
+				
 			}	
 				
 		}else if (event.getSource() == newButton) {
