@@ -18,9 +18,12 @@ public class PopulationTextPanel extends JPanel{
 		return new Dimension(400, 40); 	// Size Population Panel 
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {	//, Population population
 		super.paintComponent(g);
-
+		
+		System.out.println("@TextPanel: Generation: " + population.getGeneration());
+		
 		g.drawString("Generation: " + population.getGeneration(), 5, 20);	
 		g.drawString("Population: " + population.getAmount(), 5, 35);	
 			

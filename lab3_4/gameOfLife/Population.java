@@ -230,9 +230,8 @@ public class Population {
 		
 		this.field = this.tmp_field;
 		setAmount(calcAmount(this.field)); 
-		setGeneration(++this.generation);
-		this.setAmountHist(getAmount(), getGeneration());
-		//System.out.println(getGeneration()); //[DEBUG]
+		setGeneration(++generation);
+		setAmountHist(amount, generation);
 	}
 	
 	public int[] getAmountHist() {
@@ -243,26 +242,26 @@ public class Population {
 		this.amountHist[generation] = amount;
 	}
 	
-	public void debug() {									// Debug-Method [DEBUG]
-		System.out.println("Ratio = " + this.ratio + "\n");
-		System.out.println("Population-Matrix: \n");
-		
-		int n;
-		int counter = 0;
-		
-		for(int x = 0; x < 50; x++) {
-			for(int y = 0; y < 50; y++) {
-				
-				if(this.field[x][y]) { 
-					n = 1;
-					counter++;
-				}
-				else n = 0;
-				
-				System.out.print(n + " ");
-			}
-			System.out.println(" ");
-		}
-		System.out.println("Verhältnis = " + counter + " / 2500");
-	}	
+//	public void debug() {									// Debug-Method [DEBUG]
+//		System.out.println("Ratio = " + this.ratio + "\n");
+//		System.out.println("Population-Matrix: \n");
+//		
+//		int n;
+//		int counter = 0;
+//		
+//		for(int x = 0; x < 50; x++) {
+//			for(int y = 0; y < 50; y++) {
+//				
+//				if(this.field[x][y]) { 
+//					n = 1;
+//					counter++;
+//				}
+//				else n = 0;
+//				
+//				System.out.print(n + " ");
+//			}
+//			System.out.println(" ");
+//		}
+//		System.out.println("Verhältnis = " + counter + " / 2500");
+//	}	
 }

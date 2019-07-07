@@ -24,6 +24,8 @@ public class PopulationPaintPanel extends JPanel{
 		
 		// Draw here
 		
+		System.out.println("test");
+		
 		for(int x = 0; x < 50; x++) {
 			for(int y = 0; y < 50; y++) {
 				
